@@ -1,0 +1,17 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: weather-sender
+  namespace: default
+spec:
+  type: pubsub.azure.servicebus
+  version: v1
+  metadata:
+  - name: connectionString # Required
+    secretKeyRef:
+      name: sb-connectionString
+      key: sb-connectionString
+  - name: disableEntityManagement # Optional
+    value: "true"
+auth:
+  secretStore: contoso-secret-store
